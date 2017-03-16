@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "766464119417",
+    "firebase_url": "https://matetracker-65f49.firebaseio.com",
+    "project_id": "matetracker-65f49",
+    "storage_bucket": "matetracker-65f49.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:766464119417:android:16a2ab2927fc9441",
+        "android_client_info": {
+          "package_name": "com.dhankher.matetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766464119417-s1s4es4qp5poh2sstvh0uqtt2g6o9c0e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dhankher.matetracker",
+            "certificate_hash": "cd106adaaf5b869a672e0940a3dd281c250a370e"
+          }
+        },
+        {
+          "client_id": "766464119417-c7ud96642kvaqroit94vreh8do41t9mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHjWsaD44TJSsbJ8srr9RcuGuHFtoGPks"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766464119417-c7ud96642kvaqroit94vreh8do41t9mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
