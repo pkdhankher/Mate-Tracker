@@ -35,19 +35,14 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         String type = params[0];
 
 
-        if (type.equals("login"))
+        if (type.equals("signup"))
         {
-         //   String logurl = "http://10.0.2.2/pp1.php";   //for localhost -pawan
-            String logurl = "http://pawan.esy.es/pp1.php";
+            String logurl = "http://10.1.0.80/mateTracker/signup.php";   //for localhost -pawan
+//            String logurl = "http://pawan.esy.es/pp1.php";
 
             try {
-                String street = params[1];
-                String colony = params[2];
-                String city = params[3];
-                String zipcode = params[4];
-                String phoneno = params[5];
-                String complaintdetails = params[6];
-                String image = params[7];
+                String userId = params[1];
+
                 URL url = new URL(logurl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -55,13 +50,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String postdata = URLEncoder.encode("street", "UTF-8") + "=" + URLEncoder.encode(street, "UTF-8") + "&"
-                        + URLEncoder.encode("colony", "UTF-8") + "=" + URLEncoder.encode(colony, "UTF-8") + "&"
-                        + URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&"
-                        + URLEncoder.encode("zipcode", "UTF-8") + "=" + URLEncoder.encode(zipcode, "UTF-8") + "&"
-                        + URLEncoder.encode("phoneno", "UTF-8") + "=" + URLEncoder.encode(phoneno, "UTF-8") + "&"
-                        + URLEncoder.encode("complaintdetails", "UTF-8") + "=" + URLEncoder.encode(complaintdetails, "UTF-8") + "&"
-                        + URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(image, "UTF-8");
+                String postdata = URLEncoder.encode("userId", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8");
                 bufferedWriter.write(postdata);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -88,136 +77,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
 
 
-        else if(type.equals("data")){
-            try {
 
-                String logurl = "http://pawan.esy.es/demo1.php";
-             //   String logurl = "http://10.0.2.2/demo1.php";   //for localhost -pawan
-                String phone = params[1];
-                URL url = new URL(logurl);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String postdata = URLEncoder.encode("phone", "UTF-8") + "=" + URLEncoder.encode(phone, "UTF-8") ;
-                bufferedWriter.write(postdata);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                Log.d(TAG, "doInBackground() called with: " + "result = [" + result + "]");
-                return result;
-
-
-            }
-            catch (MalformedURLException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        else if (type.equals("city"))
-        {
-
-            try {
-                String spresult = params[1];
-                String cityurl = "http://pawan.esy.es/getcity.php";
-               // String cityurl = "http://10.0.2.2/getcity.php";  //for localhost -pawan
-                URL url = new URL(cityurl);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String postdata = URLEncoder.encode("spresult", "UTF-8") + "=" + URLEncoder.encode(spresult, "UTF-8");
-
-                bufferedWriter.write(postdata);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                Log.d(TAG, "doInBackground() called with: " + "result = [" + result + "]");
-                return result;
-
-            }
-            catch (MalformedURLException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
-
-        else if (type.equals("update"))
-        {
-
-            try {
-                String id = params[1];
-                String idurl = "http://pawan.esy.es/update.php";
-            //    String idurl = "http://10.0.2.2/update.php";  //for localhost -pawan
-                URL url = new URL(idurl);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoInput(true);
-                httpURLConnection.setDoOutput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String postdata = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
-
-                bufferedWriter.write(postdata);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
-                String result = "";
-                String line = "";
-                while ((line = bufferedReader.readLine()) != null) {
-                    result += line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                Log.d(TAG, "doInBackground() called with: " + "result = [" + result + "]");
-                return result;
-
-            }
-            catch (MalformedURLException e)
-            {
-                e.printStackTrace();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-        }
 
 
 
@@ -228,16 +88,16 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     @Override
     protected void onPreExecute() {
 
-//        alertDialog = new AlertDialog.Builder(context).create();
-//        alertDialog.setTitle("login status");
+        alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle("SignUp Status");
 
     }
 
 
     @Override
     protected void onPostExecute(String result) {
-//        alertDialog.setMessage(result);
-//        alertDialog.show();
+        alertDialog.setMessage(result);
+        alertDialog.show();
     }
     @Override
     protected void onProgressUpdate(Void... values)

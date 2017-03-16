@@ -31,7 +31,7 @@ public class LocationManagerClass implements LocationListener {
             location.setLng(loc.getLongitude());
             locationUpdateDetector.onLocationUpdated(location);
             Log.d("longitude: " + loc.getLongitude(),"latitude"+loc.getLatitude());
-            Toast.makeText(context, "lat:-"+loc.getLatitude()+"lng:-"+loc.getLongitude(), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "lat:-"+loc.getLatitude()+"lng:-"+loc.getLongitude(), Toast.LENGTH_SHORT).show();
         }
     }
 

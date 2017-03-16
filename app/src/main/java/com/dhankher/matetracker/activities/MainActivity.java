@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.dhankher.matetracker.R;
 import com.dhankher.matetracker.eventbus.UpdatedLocationEvent;
@@ -24,12 +25,14 @@ import org.greenrobot.eventbus.EventBus;
 public class MainActivity extends AppCompatActivity implements LocationUpdaeDetector {
 
     private static final String TAG = "MainActivity";
+    private TextView TVSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TVSignup = (TextView) findViewById(R.id.TVsignup);
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,11 +41,16 @@ public class MainActivity extends AppCompatActivity implements LocationUpdaeDete
             }
         });
 
-
+        TVSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SignUpActivity.class));
+            }
+        });
 
         int minTime = 2000;
         float minDistance = 1;
-        LocationManagerClass myLocListener = new LocationManagerClass(getApplicationContext(),this);
+        LocationManagerClass myLocListener = new LocationManagerClass(getApplicationContext(), this);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
         criteria.setPowerRequirement(Criteria.POWER_LOW);

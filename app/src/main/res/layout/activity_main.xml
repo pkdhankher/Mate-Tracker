@@ -10,12 +10,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.MainActivity">
 
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:text="Start map Activity"
-    android:id="@+id/button"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SignUp"
+        android:textSize="20dp"
+        android:layout_marginLeft="250dp"
+        android:id="@+id/TVsignup"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Start map Activity"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

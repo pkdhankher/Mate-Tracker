@@ -23,18 +23,17 @@
         </activity>
         <activity android:name=".map.MapFragment" />
 
-        <service
-            android:name=".fcm.FirebaseInstanceIdServiceClass">
+        <service android:name=".fcm.FirebaseInstanceIdServiceClass">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity android:name=".activities.SignUpActivity"></activity>
     </application>
 
 </manifest>
