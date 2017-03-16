@@ -9,7 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.dhankher.matetracker.R;
-import com.dhankher.matetracker.workers.BackgroundWorker;
+import com.dhankher.matetracker.fcm.SharedPrefManager;
+import com.dhankher.matetracker.workers.UserSignUp;
 
 public class SignUpActivity extends AppCompatActivity {
     private static final String TAG = "SignUpActivity";
@@ -27,17 +28,19 @@ public class SignUpActivity extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BackgroundWorker backgroundWorker = new BackgroundWorker(SignUpActivity.this);
+                UserSignUp userSignUp = new UserSignUp(SignUpActivity.this);
                 String userId = userIdTV.getText().toString();
+                String token = SharedPrefManager.getInstance(SignUpActivity.this).getToken();
+
                 if (userId.isEmpty()) {
                     Toast.makeText(SignUpActivity.this, "Please enter a valid UserId and try again", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Log.d(TAG, "userId: " + userId);
                 String type = "signup";
-                backgroundWorker.execute(type, userId);
+                userSignUp.execute(type, userId,token);
                 userIdTV.setText("");
-                
+
             }
         });
     }

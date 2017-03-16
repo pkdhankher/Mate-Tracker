@@ -12,13 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dhankher.matetracker.R;
 import com.dhankher.matetracker.eventbus.UpdatedLocationEvent;
+import com.dhankher.matetracker.fcm.SharedPrefManager;
 import com.dhankher.matetracker.location.Loc;
 import com.dhankher.matetracker.location.LocationManagerClass;
 import com.dhankher.matetracker.location.LocationUpdaeDetector;
 import com.dhankher.matetracker.map.MapFragment;
+import com.dhankher.matetracker.workers.UpdateUserLocation;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -71,15 +74,21 @@ public class MainActivity extends AppCompatActivity implements LocationUpdaeDete
             return;
         }
         locationManager.requestLocationUpdates(bestProvider, minTime, minDistance, myLocListener);
-//        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, minTime, minDistance, myLocListener);
+
 
     }
 
 
     @Override
     public void onLocationUpdated(Loc location) {
-
         EventBus.getDefault().post(new UpdatedLocationEvent(location));
+        String lng = String.valueOf(location.getLng());
+        String lat = String.valueOf(location.getLat());
+        String token = SharedPrefManager.getInstance(this).getToken();
+        String type = "updatelocation";
+        UpdateUserLocation updateUserLocation = new UpdateUserLocation(MainActivity.this);
+        updateUserLocation.execute(type,lat,lng,token);
+//        Toast.makeText(this, "location Updated", Toast.LENGTH_SHORT).show();
 
     }
 }

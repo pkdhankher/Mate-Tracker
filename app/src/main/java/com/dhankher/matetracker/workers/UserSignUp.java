@@ -20,12 +20,12 @@ import java.net.URLEncoder;
  * Created by Dhankher on 3/16/2017.
  */
 
-public class BackgroundWorker extends AsyncTask<String,Void,String> {
+public class UserSignUp extends AsyncTask<String,Void,String> {
 
     Context context;
     AlertDialog alertDialog;
-    String TAG ="Backgroundworker";
-    public BackgroundWorker(Context ctx) {
+    String TAG ="UserSignUp";
+    public UserSignUp(Context ctx) {
         context = ctx;
     }
 
@@ -34,7 +34,6 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
         String type = params[0];
 
-
         if (type.equals("signup"))
         {
             String logurl = "http://10.1.0.80/mateTracker/signup.php";   //for localhost -pawan
@@ -42,6 +41,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
 
             try {
                 String userId = params[1];
+                String token = params[2];
+                Log.d(TAG, "token: "+token);
 
                 URL url = new URL(logurl);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -50,7 +51,8 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                String postdata = URLEncoder.encode("userId", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8");
+                String postdata = URLEncoder.encode("userId", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8") + "&"
+                        + URLEncoder.encode("token", "UTF-8") + "=" + URLEncoder.encode(token, "UTF-8");
                 bufferedWriter.write(postdata);
                 bufferedWriter.flush();
                 bufferedWriter.close();
